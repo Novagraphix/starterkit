@@ -1,4 +1,4 @@
-# Starterkit
+# Starterkit - WIP - DO NOT USE
 
 ```
 composer require novagraphix/starterkit

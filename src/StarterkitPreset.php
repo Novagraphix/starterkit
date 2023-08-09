@@ -33,6 +33,11 @@ class StarterkitPreset extends Preset
 
         // update vite.config
 
+        // update vite.config for SCSS
+        static::updateFile(base_path('vite.config.js'), function ($file) {
+            return str_replace("css/app.css", "scss/app.scss", $file);
+        });
+
         /* static::updateFile(base_path('app/Http/Kernel.php'), function ($file) {
             $updatedFile = str_replace("'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,", "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,\n\t\t'redirect-to-dashboard' => \App\Http\Middleware\RedirectToDashboard::class,", $file);
             return str_replace("'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,", "'password.confirm' => \App\Http\Middleware\RequirePassword::class,", $updatedFile);

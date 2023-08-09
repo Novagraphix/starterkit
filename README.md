@@ -2,7 +2,7 @@
 
 ```
 composer require novagraphix/starterkit
-php artisan ui genesis
+php artisan ui starterkit
 npm install
 npm run dev
 ```

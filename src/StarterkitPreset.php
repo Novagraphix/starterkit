@@ -1,0 +1,67 @@
+<?php
+
+namespace Novagraphix\Starterkit;
+
+use Illuminate\Support\Arr;
+use Laravel\Ui\Presets\Preset;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Artisan;
+
+class StarterkitPreset extends Preset
+{
+    const NPM_PACKAGES_TO_ADD = [
+        '@tailwindcss/forms' => '^0.5',
+        '@tailwindcss/typography' => '^0.5',
+        'alpinejs' => '^3.8',
+        'autoprefixer' => '^10.4',
+        'resolve-url-loader' => '^3.1',
+        'sass' => '^1.3',
+        'sass-loader' => '^8.0',
+        'tailwindcss' => '^3.0',
+    ];
+
+    const NPM_PACKAGES_TO_REMOVE = [
+        'lodash',
+        'axios',
+    ];
+
+    public static function install()
+    {
+        static::updatePackages();
+
+        $filesystem = new Filesystem();
+        $filesystem->copyDirectory(__DIR__ . '/../stubs/default', base_path());
+
+        static::updateFile(base_path('app/Http/Kernel.php'), function ($file) {
+            $updatedFile = str_replace("'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,", "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,\n\t\t'redirect-to-dashboard' => \App\Http\Middleware\RedirectToDashboard::class,", $file);
+            return str_replace("'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,", "'password.confirm' => \App\Http\Middleware\RequirePassword::class,", $updatedFile);
+        });
+
+        // This is needed until page named routes are available in Folio
+        static::updateFile(base_path('app/Http/Middleware/Authenticate.php'), function ($file) {
+            return str_replace("route('login')", "'/auth/login'", $file);
+        });
+
+        // Run the Folio and volt install commands
+        Artisan::call('folio:install');
+        Artisan::call('volt:install');
+    }
+
+    protected static function updatePackageArray(array $packages)
+    {
+        return array_merge(
+            static::NPM_PACKAGES_TO_ADD,
+            Arr::except($packages, static::NPM_PACKAGES_TO_REMOVE)
+        );
+    }
+
+    /**
+     * Update the contents of a file with the logic of a given callback.
+     */
+    protected static function updateFile(string $path, callable $callback)
+    {
+        $originalFileContents = file_get_contents($path);
+        $newFileContents = $callback($originalFileContents);
+        file_put_contents($path, $newFileContents);
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "name": "novagraphix/starterkit",
+    "description": "A starterkit for Laravel.",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Stephan Jess",
+            "email": "s.jess@novagraphix.de"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0",
+        "laravel/ui": "^4.2",
+        "livewire/livewire": "^3.0@beta",
+        "livewire/volt": "^1.0@beta",
+        "laravel/folio": "^1.0@beta"
+    },
+    "autoload": {
+        "psr-4": {
+            "Novagraphix\\Starterkit\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Novagraphix\\Starterkit\\StarterkitServiceProvider"
+            ],
+            "aliases": {
+                "Starterkit": "Novagraphix\\Starterkit\\StarterkitFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}

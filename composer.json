@@ -11,11 +11,18 @@
     ],
     "require": {
         "php": "^8.1",
+        "blade-ui-kit/blade-icons": "^1.5",
         "illuminate/support": "^10.0",
         "laravel/ui": "^4.2",
         "livewire/livewire": "^3.0@beta",
         "livewire/volt": "^1.0@beta",
-        "laravel/folio": "^1.0@beta"
+        "laravel/folio": "^1.0@beta",
+        "owenvoke/blade-fontawesome": "^2.3",
+        "yoeunes/toastr": "^2.3"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.8",
+        "beyondcode/laravel-dump-server": "^1.9"
     },
     "autoload": {
         "psr-4": {

@@ -10,14 +10,13 @@ use Illuminate\Support\Facades\Artisan;
 class StarterkitPreset extends Preset
 {
     const NPM_PACKAGES_TO_ADD = [
-        '@tailwindcss/forms' => '^0.5',
-        '@tailwindcss/typography' => '^0.5',
-        'alpinejs' => '^3.8',
-        'autoprefixer' => '^10.4',
-        'resolve-url-loader' => '^3.1',
-        'sass' => '^1.3',
-        'sass-loader' => '^8.0',
-        'tailwindcss' => '^3.0',
+        '@tailwindcss/forms' => '^0.5.4',
+        '@tailwindcss/typography' => '^0.5.9',
+        'alpinejs' => '^3.12.3',
+        'autoprefixer' => '^10.4.14',
+        "postcss" => "^8.4.27",
+        "sass" =>  "^1.64.2",
+        "tailwindcss" =>  "^3.3.3",
     ];
 
     const NPM_PACKAGES_TO_REMOVE = [
@@ -32,10 +31,12 @@ class StarterkitPreset extends Preset
         $filesystem = new Filesystem();
         $filesystem->copyDirectory(__DIR__ . '/../stubs/default', base_path());
 
-        static::updateFile(base_path('app/Http/Kernel.php'), function ($file) {
+        // update vite.config
+
+        /* static::updateFile(base_path('app/Http/Kernel.php'), function ($file) {
             $updatedFile = str_replace("'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,", "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,\n\t\t'redirect-to-dashboard' => \App\Http\Middleware\RedirectToDashboard::class,", $file);
             return str_replace("'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,", "'password.confirm' => \App\Http\Middleware\RequirePassword::class,", $updatedFile);
-        });
+        }); */
 
         // This is needed until page named routes are available in Folio
         static::updateFile(base_path('app/Http/Middleware/Authenticate.php'), function ($file) {

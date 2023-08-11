@@ -1,6 +1,7 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
+const colors = require('tailwindcss/colors')
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -13,9 +14,11 @@ export default {
     theme: {
         extend: {
             colors: {
+                secondary: colors.indigo,
+                'nova-gray': '#4f4e4d'
             },
             fontFamily: {
-                sans: ['Heebo', ...defaultTheme.fontFamily.sans],
+                urbanist: ['Urbanist', ...defaultTheme.fontFamily.sans],
             },
         },
     },

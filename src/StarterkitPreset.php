@@ -30,12 +30,16 @@ class StarterkitPreset extends Preset
 
         $filesystem = new Filesystem();
         $filesystem->copyDirectory(__DIR__ . '/../stubs/default', base_path());
-
-        // update vite.config
+        $filesystem->deleteDirectory(base_path() . '/resources/css');
+        $filesystem->delete(base_path() . '/resources/views/welcome.blade.php');
 
         // update vite.config for SCSS
         static::updateFile(base_path('vite.config.js'), function ($file) {
             return str_replace("css/app.css", "scss/app.scss", $file);
+        });
+
+        static::updateFile(base_path('app/Http/Kernel.php'), function ($file) {
+            return str_replace("'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,", "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,\n\t\t'redirect-to-dashboard' => \App\Http\Middleware\RedirectToDashboard::class,", $file);
         });
 
         /* static::updateFile(base_path('app/Http/Kernel.php'), function ($file) {

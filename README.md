@@ -9,6 +9,6 @@ npm run dev
 
 ## Additional
 
-´´´
+```
 git tag -a v0.1 -m "first version commit"
-´´´
+```

@@ -1,4 +1,4 @@
-<x-navigation.elements.open-nav-link link="home"
+<x-navigation.elements.open-nav-link link="users.index"
                                      title="Benutzerverwaltung">
     Lege neue Benutzer an und vergebe Rollen, sowie Berechtigungen.
 </x-navigation.elements.open-nav-link>

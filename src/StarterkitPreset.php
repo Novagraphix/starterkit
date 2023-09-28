@@ -10,13 +10,15 @@ use Illuminate\Support\Facades\Artisan;
 class StarterkitPreset extends Preset
 {
     const NPM_PACKAGES_TO_ADD = [
-        '@tailwindcss/forms' => '^0.5.4',
-        '@tailwindcss/typography' => '^0.5.9',
-        'alpinejs' => '^3.12.3',
-        'autoprefixer' => '^10.4.14',
-        "postcss" => "^8.4.27",
-        "sass" =>  "^1.64.2",
+        '@tailwindcss/forms' => '^0.5.6',
+        '@tailwindcss/typography' => '^0.5.10',
+        'alpinejs' => '^3.13.0',
+        'autoprefixer' => '^10.4.16',
+        "postcss" => "^8.4.30",
+        "sass" =>  "^1.68.0",
         "tailwindcss" =>  "^3.3.3",
+        "@yaireo/tagify" => "^4.17.9",
+        "sweetalert2" => "^11.7.31",
     ];
 
     const NPM_PACKAGES_TO_REMOVE = [

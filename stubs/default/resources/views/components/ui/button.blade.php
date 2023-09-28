@@ -1,5 +1,5 @@
 @props([
-    'title' => 'button',
+    'title' => '',
     'type' => 'primary',
     'size' => 'md',
     'tag' => 'button',
@@ -10,19 +10,19 @@
 
 @php
     $sizeClasses = match ($size) {
-        'xs' => 'px-2 py-0.5 text-[0.65rem] font-medium rounded-md',
-        'sm' => 'px-2.5 py-1.5 text-xs font-medium rounded-md',
-        'md' => 'px-4 py-2 rounded-md font-semibold text-xs',
-        'lg' => 'px-5 h-10  text-xs font-semibold rounded-md',
-        'xl' => 'px-6 py-3.5 text-base font-medium rounded-md',
-        '2xl' => 'px-7 py-4 text-base font-medium rounded-md',
+        'xs' => 'px-2 py-1 text-[0.65rem] leading-none font-medium rounded-md',
+        'sm' => 'px-2.5 py-1.5 text-xs leading-none font-medium rounded-md',
+        'md' => 'px-4 py-2 rounded-md font-semibold text-xs leading-none',
+        'lg' => 'px-5 h-10  text-xs leading-none font-semibold rounded-md',
+        'xl' => 'px-6 py-3.5 text-base leading-none font-medium rounded-md',
+        '2xl' => 'px-7 py-4 text-base leading-none font-medium rounded-md',
     };
 
     $sizeClassesIcon = match ($size) {
         'xs' => 'w-2 md:w-3 h-2 md:h-3',
-        'sm' => 'w-3 md:w-4 h-3 md:h-4',
-        'md' => 'w-3 md:w-4 h-3 md:h-4',
-        'lg' => 'w-3 md:w-4 h-3 md:h-4',
+        'sm' => 'w-2 md:w-3 h-2 md:h-3',
+        'md' => 'w-2 md:w-3 h-2 md:h-3',
+        'lg' => 'w-2 md:w-3 h-2 md:h-3',
         'xl' => 'w-3 md:w-4 h-3 md:h-4',
         '2xl' => 'w-3 md:w-4 h-3 md:h-4',
     };
@@ -65,4 +65,5 @@
     @elseif ($title != '')
         <span @class(['ml-1' => $icon != ''])>{{ $title }}</span>
     @endif
+    {{ $slot }}
     </{{ $tagClose }}>

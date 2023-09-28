@@ -47,7 +47,7 @@ $showConfirmation = function ($method, $id) {
                     <x-slot:body>
                         @foreach ($users as $user)
                             <tr
-                                class="text-[0.65em] even:bg-gray-100 hover:bg-amber-50 dark:text-gray-100 lg:text-xs 2xl:text-sm">
+                                class="text-[0.65em] even:bg-gray-100 hover:bg-amber-50 dark:text-gray-100 dark:even:bg-gray-800 lg:text-xs 2xl:text-sm">
                                 <td
                                     class="block px-2 before:mr-1 before:font-bold before:content-['Name'] lg:table-cell lg:p-2 lg:before:content-none">
                                     <a href="/users/{{ $user->id }}">{{ $user->name }}</a>
@@ -66,7 +66,6 @@ $showConfirmation = function ($method, $id) {
                                                      icon="fas-edit" />
 
                                         <x-ui.button wire:click.live="showConfirmation('delete-user', {{ $user->id }})"
-                                                     title="{{ __('delete') }}"
                                                      size="xs"
                                                      type="danger"
                                                      icon="fas-trash" />

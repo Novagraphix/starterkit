@@ -49,10 +49,9 @@
                 <x-ui.dropdown align="right"
                                width="48">
                     <x-slot name="trigger">
-                        <x-ui.button size="lg">
-                            <div class="block lg:hidden">@svg('fas-user', 'w-3 h-3')</div>
-                            <div class="hidden lg:block">{{ Auth::user()->name }}</div>
-
+                        <x-ui.button size="lg"
+                                     icon="fas-user"
+                                     title="{{ Auth::user()->name }}">
                             <div class="ml-1">
                                 <svg class="w-4 h-4 fill-current"
                                      xmlns="http://www.w3.org/2000/svg"

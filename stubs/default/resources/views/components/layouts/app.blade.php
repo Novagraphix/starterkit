@@ -19,7 +19,7 @@
     <title>{{ $title ?? 'Novagraphix' }}</title>
 </head>
 
-<body class="bg-gray-50 font-urbanist antialiased"
+<body class="antialiased font-urbanist"
       x-data="{ darkMode: false }"
       x-init="if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
           localStorage.setItem('darkMode', JSON.stringify(true));
@@ -28,16 +28,18 @@
       $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
       x-cloak
       x-bind:class="{ 'dark': darkMode === true }">
-    @if (!Auth::guest())
-        <div>
-            <x-ui.top-nav>
-                <x-slot name="title">
-                    <span class="font-black">laravel</span>starterkit
-                </x-slot>
-            </x-ui.top-nav>
-        </div>
-    @endif
-    {{ $slot }}
+    <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+        @if (!Auth::guest())
+            <div>
+                <x-ui.top-nav>
+                    <x-slot name="title">
+                        <span class="font-black">laravel</span>starterkit
+                    </x-slot>
+                </x-ui.top-nav>
+            </div>
+        @endif
+        {{ $slot }}
+    </div>
 </body>
 
 </html>

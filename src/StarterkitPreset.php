@@ -45,6 +45,22 @@ class StarterkitPreset extends Preset
         "beyondcode/laravel-dump-server": "^1.9",', $file);
         });
 
+        static::updateFile(base_path('config/app.php'), function ($file) {
+            return str_replace("App\Providers\EventServiceProvider::class,", "App\Providers\EventServiceProvider::class,\n\t\tApp\Providers\HelperServiceProvider::class,", $file);
+        });
+
+        static::updateFile(base_path('config/app.php'), function ($file) {
+            return str_replace("use Illuminate\Support\Facades\Facade;", "use Illuminate\Support\Facades\Facade;\n\t\tuse App\Helpers\Version;", $file);
+        });
+
+        static::updateFile(base_path('config/app.php'), function ($file) {
+            return str_replace("'name' => env('APP_NAME', 'Laravel'),", "'name' => env('APP_NAME', 'Laravel'),\n\t\t'version' => Version::set(),", $file);
+        });
+
+        static::updateFile(base_path('config/app.php'), function ($file) {
+            return str_replace("'aliases' => Facade::defaultAliases()->merge([", "'aliases' => Facade::defaultAliases()->merge([\n\t\t'Version' => \App\Helpers\Version::class,", $file);
+        });
+
         static::updateFile(base_path('app/Http/Kernel.php'), function ($file) {
             return str_replace("'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,", "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,\n\t\t'redirect-to-dashboard' => \App\Http\Middleware\RedirectToDashboard::class,", $file);
         });

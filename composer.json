@@ -20,10 +20,6 @@
         "owenvoke/blade-fontawesome": "^2.4",
         "yoeunes/toastr": "^2.3"
     },
-    "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.9",
-        "beyondcode/laravel-dump-server": "^1.9"
-    },
     "autoload": {
         "psr-4": {
             "Novagraphix\\Starterkit\\": "src"
@@ -42,5 +38,5 @@
             }
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }

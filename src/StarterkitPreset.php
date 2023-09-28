@@ -40,6 +40,11 @@ class StarterkitPreset extends Preset
             return str_replace("css/app.css", "scss/app.scss", $file);
         });
 
+        static::updateFile(base_path('composer.json'), function ($file) {
+            return str_replace('"require-dev": {', '"require-dev": {' . "\n\t\t" . '"barryvdh/laravel-debugbar": "^3.9",
+        "beyondcode/laravel-dump-server": "^1.9",', $file);
+        });
+
         static::updateFile(base_path('app/Http/Kernel.php'), function ($file) {
             return str_replace("'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,", "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,\n\t\t'redirect-to-dashboard' => \App\Http\Middleware\RedirectToDashboard::class,", $file);
         });

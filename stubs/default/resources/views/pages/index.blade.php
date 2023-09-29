@@ -15,14 +15,12 @@ middleware(['redirect-to-dashboard']);
             <div class="absolute top-0 left-0 flex items-center justify-end w-full h-12 gap-2 px-6 bg-gray-600 shadow">
                 <x-ui.button type="primary"
                              tag="a"
-                             href="/auth/register">
-                    Register
-                </x-ui.button>
+                             href="/auth/register"
+                             title="Register" />
                 <x-ui.button type="primary"
                              tag="a"
-                             href="/auth/login">
-                    Login
-                </x-ui.button>
+                             href="/auth/login"
+                             title="Login" />
             </div>
 
             <div>

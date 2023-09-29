@@ -39,6 +39,10 @@
             </div>
         @endif
         {{ $slot }}
+
+        <div>
+            <x-includes.footer />
+        </div>
     </div>
 </body>
 

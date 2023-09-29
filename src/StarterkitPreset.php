@@ -85,7 +85,7 @@ class StarterkitPreset extends Preset
         Artisan::call('volt:install');
 
         // Run Spatie Permission Installation
-        Artisan::call('vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"');
+        Artisan::call('vendor:publish', array('--provider' => 'Spatie\Permission\PermissionServiceProvider'));
     }
 
     protected static function updatePackageArray(array $packages)

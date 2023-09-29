@@ -34,6 +34,7 @@ class StarterkitPreset extends Preset
         $filesystem->copyDirectory(__DIR__ . '/../stubs/default', base_path());
         $filesystem->deleteDirectory(base_path() . '/resources/css');
         $filesystem->delete(base_path() . '/resources/views/welcome.blade.php');
+        $filesystem->delete(base_path() . '/app/Models/User.php');
 
         // update vite.config for SCSS
         static::updateFile(base_path('vite.config.js'), function ($file) {

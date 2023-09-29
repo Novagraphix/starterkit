@@ -86,6 +86,9 @@ class StarterkitPreset extends Preset
 
         // Run Spatie Permission Installation
         Artisan::call('vendor:publish', array('--provider' => 'Spatie\Permission\PermissionServiceProvider'));
+
+        // Toastr
+        Artisan::call('vendor:publish', array('--provider' => 'Yoeunes\Toastr\ToastrServiceProvider'));
     }
 
     protected static function updatePackageArray(array $packages)

@@ -31,6 +31,38 @@
                           class="mt-2" />
         </div>
 
+        <div>
+            <x-form.label for="email"
+                          value="E-Mail" />
+            <x-form.text-input id="email"
+                               name="email"
+                               wire:model="email"
+                               type="text"
+                               class="block w-full mt-1" />
+            <x-form.error :messages="$errors->get('email')"
+                          class="mt-2" />
+        </div>
+
+        <div>
+            <x-form.label value="Rollen" />
+            <x-form.tags class="bg-grey-lighter"
+                         name="roles"
+                         :all="$all_roles"
+                         :value="$roles"
+                         callback="changeRoles"
+                         class="block w-full mt-1" />
+        </div>
+
+        <div>
+            <x-form.label value="Berechtigungen" />
+            <x-form.tags class="bg-grey-lighter"
+                         name="permissions"
+                         :all="$all_permissions"
+                         :value="$permissions"
+                         callback="changePermissions"
+                         class="block w-full mt-1" />
+        </div>
+
         <div class="flex items-center gap-2">
             <x-ui.button title="{{ __('save') }}"
                          :submit="true"
@@ -42,4 +74,11 @@
         </div>
 
     </form>
+    @push('after-styles')
+        <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css"
+              rel="stylesheet"
+              type="text/css" />
+    @endpush
 </div>

@@ -14,7 +14,9 @@
     <link href="https://fonts.bunny.net/css?family=urbanist:300,400,500,600,700,900"
           rel="stylesheet" />
 
+    @stack('before-styles')
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+    @stack('after-styles')
 
     <title>{{ $title ?? 'Novagraphix' }}</title>
 </head>

@@ -1,7 +1,11 @@
 <x-layouts.app>
+    <x-slot name="header">
+        @lang('welcome', ['name' => Auth::user()->name])
+    </x-slot>
+
     @volt('dashboard')
-        <div>
+        <x-ui.content>
             Dashboard
-        </div>
+        </x-ui.content>
     @endvolt
 </x-layouts.app>

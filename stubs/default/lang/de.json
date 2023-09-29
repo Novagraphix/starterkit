@@ -1,0 +1,20 @@
+{
+    "email": "E-Mail",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "login": "Einloggen",
+    "logout": "Ausloggen",
+    "delete_account": "Konto löschen",
+    "password": "Passwort",
+    "current_pw": "Altes Passwort",
+    "new_pw": "Neues Passwort",
+    "confirm_pw": "Passwort wiederholen",
+    "welcome": "Willkommen, :name",
+    "Forgot your password?": "Passwort vergessen?",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "Haben Sie Ihr Passwort vergessen? Kein Problem. Teilen Sie uns einfach Ihre E-Mail-Adresse mit und wir senden Ihnen per E-Mail einen Link zum Zurücksetzen des Passworts, mit dem Sie ein neues auswählen können.",
+    "Email Password Reset Link": "Link senden",
+    "Showing": "Zeige",
+    "to": "bis",
+    "of": "von",
+    "results": "Ergebnissen"
+}

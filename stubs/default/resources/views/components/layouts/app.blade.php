@@ -38,7 +38,15 @@
                 </x-ui.top-nav>
             </div>
         @endif
-        {{ $slot }}
+
+        <!-- Page Heading -->
+        @if (isset($header))
+            <x-includes.header :header="$header" />
+        @endif
+
+        <div>
+            {{ $slot }}
+        </div>
 
         <div>
             <x-includes.footer />

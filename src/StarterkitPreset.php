@@ -83,6 +83,9 @@ class StarterkitPreset extends Preset
         // Run the Folio and volt install commands
         Artisan::call('folio:install');
         Artisan::call('volt:install');
+
+        // Run Spatie Permission Installation
+        Artisan::call('vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"');
     }
 
     protected static function updatePackageArray(array $packages)

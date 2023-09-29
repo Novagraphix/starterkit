@@ -42,38 +42,38 @@ class StarterkitPreset extends Preset
         });
 
         static::updateFile(base_path('composer.json'), function ($file) {
-            if (strpos($file, 'barryvdh/laravel-debugbar')) return;
+            if (strpos($file, 'barryvdh/laravel-debugbar')) return $file;
             return str_replace('"require-dev": {', '"require-dev": {' . "\n\t\t" . '"barryvdh/laravel-debugbar": "^3.9",
         "beyondcode/laravel-dump-server": "^1.9",', $file);
         });
 
         static::updateFile(base_path('config/app.php'), function ($file) {
-            if (strpos($file, 'HelperServiceProvider')) return;
+            if (strpos($file, 'HelperServiceProvider')) return $file;
             return str_replace("App\Providers\EventServiceProvider::class,", "App\Providers\EventServiceProvider::class,\n\t\tApp\Providers\HelperServiceProvider::class,", $file);
         });
 
         static::updateFile(base_path('config/app.php'), function ($file) {
-            if (strpos($file, 'use App\Helpers\Version')) return;
+            if (strpos($file, 'use App\Helpers\Version')) return $file;
             return str_replace("use Illuminate\Support\Facades\Facade;", "use Illuminate\Support\Facades\Facade;\n\t\tuse App\Helpers\Version;", $file);
         });
 
         static::updateFile(base_path('config/app.php'), function ($file) {
-            if (strpos($file, 'Version::set()')) return;
+            if (strpos($file, 'Version::set()')) return $file;
             return str_replace("'name' => env('APP_NAME', 'Laravel'),", "'name' => env('APP_NAME', 'Laravel'),\n\t\t'version' => Version::set(),", $file);
         });
 
         static::updateFile(base_path('config/app.php'), function ($file) {
-            if (strpos($file, '\App\Helpers\Version::class')) return;
+            if (strpos($file, '\App\Helpers\Version::class')) return $file;
             return str_replace("'aliases' => Facade::defaultAliases()->merge([", "'aliases' => Facade::defaultAliases()->merge([\n\t\t'Version' => \App\Helpers\Version::class,", $file);
         });
 
         static::updateFile(base_path('config/auth.php'), function ($file) {
-            if (strpos($file, 'App\Domains\Auth\Models\User')) return;
+            if (strpos($file, 'App\Domains\Auth\Models\User')) return $file;
             return str_replace("App\Models\User", "App\Domains\Auth\Models\User", $file);
         });
 
         static::updateFile(base_path('app/Http/Kernel.php'), function ($file) {
-            if (strpos($file, 'redirect-to-dashboard')) return;
+            if (strpos($file, 'redirect-to-dashboard')) return $file;
             return str_replace("'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,", "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,\n\t\t'redirect-to-dashboard' => \App\Http\Middleware\RedirectToDashboard::class,", $file);
         });
 

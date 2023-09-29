@@ -1,7 +1,7 @@
 <?php
 
 use function Laravel\Folio\name;
-use App\Models\User;
+use App\Domains\Auth\Models\User;
 use function Livewire\Volt\{state, on};
 use Livewire\Volt\Component;
 

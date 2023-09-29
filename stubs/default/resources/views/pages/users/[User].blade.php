@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Domains\Auth\Models\User;
 use function Livewire\Volt\{state};
 
 state(['user' => fn() => $user]);

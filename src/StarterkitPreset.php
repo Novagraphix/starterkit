@@ -61,6 +61,10 @@ class StarterkitPreset extends Preset
             return str_replace("'aliases' => Facade::defaultAliases()->merge([", "'aliases' => Facade::defaultAliases()->merge([\n\t\t'Version' => \App\Helpers\Version::class,", $file);
         });
 
+        static::updateFile(base_path('config/auth.php'), function ($file) {
+            return str_replace("App\Models\User", "App\Domains\Auth\Models\User", $file);
+        });
+
         static::updateFile(base_path('app/Http/Kernel.php'), function ($file) {
             return str_replace("'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,", "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,\n\t\t'redirect-to-dashboard' => \App\Http\Middleware\RedirectToDashboard::class,", $file);
         });

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Domains\Auth\Models\User;
 use Illuminate\Auth\Events\Login;
 use function Laravel\Folio\{middleware};
 use function Livewire\Volt\{state, rules};
@@ -51,8 +51,8 @@ $authenticate = function () {
                                  name="password"
                                  wire:model="password" />
 
-                <div class="flex items-center justify-between mt-6 text-sm leading-5">
-                    <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none"
+                <div class="mt-6 flex items-center justify-between text-sm leading-5">
+                    <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none"
                        href="/auth/password/reset">
                         {{ __('Forgot your password?') }}
                     </a>

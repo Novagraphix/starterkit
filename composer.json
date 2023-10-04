@@ -19,6 +19,7 @@
         "laravel/folio": "^1.1",
         "owenvoke/blade-fontawesome": "^2.4",
         "spatie/laravel-permission": "^5.11",
+        "spatie/laravel-activitylog": "^4.7",
         "yoeunes/toastr": "^2.3"
     },
     "autoload": {

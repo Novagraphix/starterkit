@@ -88,6 +88,10 @@ class StarterkitPreset extends Preset
 
         // Run Spatie Permission Installation
         Artisan::call('vendor:publish', array('--provider' => 'Spatie\Permission\PermissionServiceProvider'));
+
+        //Spatie Activitylog
+        Artisan::call('vendor:publish', array('--provider' => 'Spatie\Activitylog\ActivitylogServiceProvider', '--tag' => 'activitylog-migrations'));
+        Artisan::call('vendor:publish', array('--provider' => 'Spatie\Activitylog\ActivitylogServiceProvider', '--tag' => 'activitylog-config'));
     }
 
     protected static function updatePackageArray(array $packages)

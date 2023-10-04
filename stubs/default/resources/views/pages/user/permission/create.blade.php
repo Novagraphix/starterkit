@@ -1,11 +1,11 @@
 <x-layouts.app>
     <x-slot name="header">
-        {{ __('Benutzer erstellen') }}
+        {{ __('Berechtigung erstellen') }}
     </x-slot>
 
     <x-ui.content>
         <div>
-            <livewire:auth.user-create />
+            <livewire:auth.permission-create />
         </div>
     </x-ui.content>
 </x-layouts.app>

@@ -21,7 +21,7 @@
     $sizeClassesIcon = match ($size) {
         'xs' => 'w-2 md:w-3 h-2 md:h-3',
         'sm' => 'w-2 md:w-3 h-2 md:h-3',
-        'md' => 'w-2 md:w-3 h-2 md:h-3',
+        'md' => 'w-3 md:w-4 h-3 md:h-4',
         'lg' => 'w-2 md:w-3 h-2 md:h-3',
         'xl' => 'w-3 md:w-4 h-3 md:h-4',
         '2xl' => 'w-3 md:w-4 h-3 md:h-4',

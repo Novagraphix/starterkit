@@ -43,7 +43,8 @@
 
         <!-- Page Heading -->
         @if (isset($header))
-            <x-includes.header :header="$header" />
+            <x-includes.header :header="$header"
+                               :buttons="$buttons ?? null" />
         @endif
 
         <div>

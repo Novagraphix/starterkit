@@ -16,5 +16,10 @@
     "Showing": "Zeige",
     "to": "bis",
     "of": "von",
-    "results": "Ergebnissen"
+    "results": "Ergebnissen",
+    "create": "Erstellen",
+    "roles": "Rollen",
+    "permissions": "Berechtigungen",
+    "back": "Zurück",
+    "edit": "Bearbeiten"
 }

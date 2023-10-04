@@ -1,18 +1,18 @@
 <?php
 
 use function Laravel\Folio\name;
-use App\Domains\Auth\Models\User;
 use function Livewire\Volt\{state, on};
+use Spatie\Permission\Models\Permission;
 
-name('user.index');
+name('permission.index');
 
-state(['users' => fn() => User::all()]);
+state(['permissions' => fn() => Permission::all()]);
 
 on([
-    'delete-user' => function (User $model) {
+    'delete-permission' => function (Permission $model) {
         $model->delete();
-        toastr()->error('Benutzer wurde erfolgreich gelöscht!', 'Löschung');
-        return redirect()->route('user.index');
+        toastr()->error('Berechtigung wurde erfolgreich gelöscht!', 'Löschung');
+        return redirect()->route('permission.index');
     },
 ]);
 
@@ -31,32 +31,26 @@ $showConfirmation = function ($method, $id) {
 
 <x-layouts.app>
     <x-slot name="header">
-        {{ __('Benutzerverwaltung') }}
+        {{ __('Berechtigungsverwaltung') }}
     </x-slot>
 
     <x-slot name="buttons">
         <x-ui.button title="{{ __('create') }}"
                      size="md"
                      tag="a"
-                     href="/user/create"
-                     icon="fas-user-plus"
+                     href="/user/permission/create"
+                     icon="fas-plus"
                      type="success" />
-        <x-ui.button title="{{ __('roles') }}"
+        <x-ui.button title="{{ __('back') }}"
                      size="md"
                      tag="a"
-                     href="/user/role"
-                     icon="fas-user-shield"
-                     type="info" />
-        <x-ui.button title="{{ __('permissions') }}"
-                     size="md"
-                     tag="a"
-                     href="/user/permission"
-                     icon="fas-list"
-                     type="info" />
+                     href="/user"
+                     icon="fas-backspace"
+                     type="secondary" />
     </x-slot>
 
     <x-ui.content>
-        @volt('users')
+        @volt('permissions')
             <x-ui.table>
 
                 <x-slot:header>
@@ -64,53 +58,21 @@ $showConfirmation = function ($method, $id) {
                         class="hidden bg-gray-800 text-[0.55em] uppercase leading-normal text-gray-100 dark:bg-gray-700 dark:text-gray-100 lg:table-row lg:text-[10px] xl:text-xs">
                         <th class="px-2 py-2 text-left">Typ</th>
                         <th class="px-2 text-left">Name</th>
-                        <th class="px-6 py-3 text-left">E-Mail</th>
-                        <th class="px-6 py-3 text-left">Rollen</th>
-                        <th class="px-6 py-3 text-left">Zusätzliche Berechtigungen</th>
                         <th class="px-2"></th>
                     </tr>
                 </x-slot:header>
 
                 <x-slot:body>
-                    @foreach ($users as $user)
+                    @foreach ($permissions as $permission)
                         <tr
                             class="text-[0.65em] even:bg-gray-100 hover:bg-amber-50 dark:text-gray-100 dark:even:bg-gray-800 lg:text-xs 2xl:text-sm">
                             <td
                                 class="block px-2 font-bold before:mr-1 before:font-bold before:content-['Typ'] lg:table-cell lg:p-2 lg:before:content-none">
-                                @if ($user->isAdmin())
-                                    @lang('Administrator')
-                                @elseif ($user->isUser())
-                                    @lang('User')
-                                @elseif ($user->isApi())
-                                    @lang('API')
-                                @else
-                                    @lang('N/A')
-                                @endif
+                                {{ $permission->guard_name }}
                             </td>
                             <td
                                 class="block px-2 before:mr-1 before:font-bold before:content-['Name'] lg:table-cell lg:p-2 lg:before:content-none">
-                                <a href="/users/{{ $user->id }}">{{ $user->name }}</a>
-                            </td>
-                            <td class="px-6 py-3 text-left">
-                                {{ $user->email }}
-                            </td>
-                            <td class="px-6 py-3 text-left">
-                                @if (count($user->roles) > 0)
-                                    @foreach ($user->roles as $role)
-                                        <strong>{{ $role->name }}</strong>
-                                    @endforeach
-                                @else
-                                    Keine
-                                @endif
-                            </td>
-                            <td class="px-6 py-3 text-left">
-                                @if (count($user->permissions) > 0)
-                                    @foreach ($user->permissions as $permission)
-                                        {{ $permission->name }}<br>
-                                    @endforeach
-                                @else
-                                    Keine
-                                @endif
+                                {{ $permission->name }}
                             </td>
                             <td class="block px-2 lg:table-cell">
                                 <div
@@ -118,10 +80,10 @@ $showConfirmation = function ($method, $id) {
                                     <x-ui.button title="{{ __('edit') }}"
                                                  size="xs"
                                                  tag="a"
-                                                 href="/user/edit/{{ $user->id }}"
+                                                 href="/user/permission/edit/{{ $permission->id }}"
                                                  icon="fas-edit" />
 
-                                    <x-ui.button wire:click.live="showConfirmation('delete-user', {{ $user->id }})"
+                                    <x-ui.button wire:click.live="showConfirmation('delete-permission', {{ $permission->id }})"
                                                  size="xs"
                                                  type="danger"
                                                  icon="fas-trash" />

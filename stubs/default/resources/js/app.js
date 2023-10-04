@@ -37,7 +37,7 @@ let SwalConfirm = (
             `,
     }).then((result) => {
         if (result.value) {
-            return window.dispatchEvent(new CustomEvent(method, { detail: { user: params } }));
+            return window.dispatchEvent(new CustomEvent(method, { detail: { model: params } }));
         }
 
         if (callback) {

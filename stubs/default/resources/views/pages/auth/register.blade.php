@@ -34,10 +34,10 @@ $register = function () {
 
 <x-layouts.app>
 
-    <div class="flex h-screen w-screen flex-col items-stretch justify-center sm:items-center">
+    <div class="flex flex-col items-stretch justify-center w-screen h-screen sm:items-center">
 
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
-            <h2 class="mt-6 text-center text-3xl font-extrabold leading-9 text-gray-800">Create a new account</h2>
+            <h2 class="mt-6 text-3xl font-extrabold leading-9 text-center text-gray-800">Create a new account</h2>
             {{-- <div class="mt-2 text-sm leading-5 text-center text-gray-600 max-w">
                 <span>Or</span>
                 <x-ui.text-link href="/auth/login">sign in to your account</x-ui.text-link>
@@ -45,7 +45,7 @@ $register = function () {
         </div>
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-            <div class="border-gray-200/60 px-10 py-0 sm:rounded-lg sm:border sm:bg-white sm:py-8 sm:shadow-sm">
+            <div class="px-10 py-0 border-gray-200/60 sm:rounded-lg sm:border sm:bg-white sm:py-8 sm:shadow-sm">
                 @volt('auth.register')
                     <form wire:submit="register"
                           class="space-y-6">
@@ -70,7 +70,8 @@ $register = function () {
                                     name="password_confirmation"
                                     wire:model="passwordConfirmation" />
                         <x-ui.button type="primary"
-                                     submit="true">Register</x-ui.button>
+                                     submit="true"
+                                     title="Register" />
                     </form>
                 @endvolt
             </div>

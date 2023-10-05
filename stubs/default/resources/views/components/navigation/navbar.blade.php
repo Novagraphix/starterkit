@@ -46,8 +46,7 @@
                             @mouseleave="navigationMenuLeave()"
                             @class([
                                 'group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-white focus:outline-none disabled:pointer-events-none disabled:opacity-50',
-                                'bg-gray-900 !text-white' =>
-                                    Request::is('admin/auth/*') || Request::is('system/*'),
+                                'bg-gray-900 !text-white' => Request::is('user/*') || Request::is('user'),
                             ])>
                         <span class="mb-[2px] mr-[6px] text-secondary-400">@svg('fas-user-astronaut', 'w-4 h-4')</span>
                         <span class="hidden lg:block">Administrator</span>

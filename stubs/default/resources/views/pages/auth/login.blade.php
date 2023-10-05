@@ -63,9 +63,19 @@ $authenticate = function () {
                         {{ __('Forgot your password?') }}
                     </a>
 
-                    <x-ui.button type="primary"
-                                 submit="true"
-                                 title="{{ __('Login') }}" />
+                    <div class="flex gap-2">
+                        <x-ui.button type="primary"
+                                     submit="true"
+                                     icon="fas-door-open"
+                                     title="{{ __('Login') }}" />
+                        @if (config('starterkit.socialite') == true)
+                            <x-ui.button type="primary"
+                                         tag="route"
+                                         href="social.login"
+                                         icon="fab-google"
+                                         title="{{ __('Google') }}" />
+                        @endif
+                    </div>
                 </div>
 
             </form>

@@ -4,8 +4,8 @@ namespace App\Livewire\Auth;
 
 use Exception;
 use Livewire\Component;
+use App\Domains\Auth\Models\Role;
 use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
 
 class RoleEdit extends Component
 {

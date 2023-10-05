@@ -18,7 +18,13 @@ $authenticate = function () {
         return;
     }
 
-    event(new Login(auth()->guard('web'), User::where('email', $this->email)->first(), $this->remember));
+    $user = User::where('email', $this->email)->first();
+    $user->update([
+        'last_login_at' => now(),
+        'last_login_ip' => request()->getClientIp(),
+    ]);
+
+    event(new Login(auth()->guard('web'), $user, $this->remember));
 
     return redirect()->intended('/');
 };
@@ -58,7 +64,8 @@ $authenticate = function () {
                     </a>
 
                     <x-ui.button type="primary"
-                                 submit="true">{{ __('Login') }}</x-ui.button>
+                                 submit="true"
+                                 title="{{ __('Login') }}" />
                 </div>
 
             </form>

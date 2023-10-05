@@ -1,7 +1,9 @@
 <?php
 
 use function Livewire\Volt\{computed, state};
+use function Laravel\Folio\{middleware};
 
+middleware(['role:Administrator']);
 state(['id'])->url();
 
 ?>

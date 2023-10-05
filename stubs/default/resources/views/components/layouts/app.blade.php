@@ -54,6 +54,15 @@
         <div>
             <x-includes.footer />
         </div>
+
+        @impersonating($guard = null)
+            <a href="{{ route('impersonate.leave') }}">
+                <div
+                     class="fixed bottom-0 left-0 w-full text-xs font-bold text-center uppercase border-t-2 border-t-amber-600 bg-amber-500">
+                    Impersonation beenden
+                </div>
+            </a>
+        @endImpersonating
     </div>
 </body>
 

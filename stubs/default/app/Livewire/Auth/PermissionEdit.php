@@ -5,7 +5,7 @@ namespace App\Livewire\Auth;
 use Exception;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Permission;
+use App\Domains\Auth\Models\Permission;
 
 class PermissionEdit extends Component
 {

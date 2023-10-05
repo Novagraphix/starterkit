@@ -43,27 +43,25 @@
                           class="mt-2" />
         </div>
 
-        @if (!$user->isAdmin())
-            <div>
-                <x-form.label value="Rollen" />
-                <x-form.tags class="bg-grey-lighter"
-                             name="roles"
-                             :all="$all_roles"
-                             :value="$roles"
-                             callback="changeRoles"
-                             class="block w-full mt-1" />
-            </div>
+        <div>
+            <x-form.label value="Rollen" />
+            <x-form.tags class="bg-grey-lighter"
+                         name="roles"
+                         :all="$all_roles"
+                         :value="$roles"
+                         callback="changeRoles"
+                         class="block w-full mt-1" />
+        </div>
 
-            <div>
-                <x-form.label value="Berechtigungen" />
-                <x-form.tags class="bg-grey-lighter"
-                             name="permissions"
-                             :all="$all_permissions"
-                             :value="$permissions"
-                             callback="changePermissions"
-                             class="block w-full mt-1" />
-            </div>
-        @endif
+        <div>
+            <x-form.label value="Berechtigungen" />
+            <x-form.tags class="bg-grey-lighter"
+                         name="permissions"
+                         :all="$all_permissions"
+                         :value="$permissions"
+                         callback="changePermissions"
+                         class="block w-full mt-1" />
+        </div>
 
         <div class="flex items-center gap-2">
             <x-ui.button title="{{ __('save') }}"

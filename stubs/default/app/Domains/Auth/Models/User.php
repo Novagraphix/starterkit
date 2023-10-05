@@ -4,15 +4,18 @@ namespace App\Domains\Auth\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Lab404\Impersonate\Models\Impersonate;
+use Spatie\Activitylog\Traits\LogsActivity;
 use App\Domains\Auth\Models\Traits\Method\UserMethod;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasRoles, HasApiTokens, HasFactory, Notifiable, UserMethod;
+    use HasRoles, HasApiTokens, HasFactory, Notifiable, UserMethod, LogsActivity, Impersonate;
 
     public const TYPE_ADMIN = 'admin';
     public const TYPE_USER = 'user';
@@ -76,5 +79,14 @@ class User extends Authenticatable
     public function canBeImpersonated(): bool
     {
         return $this->type != 'admin';
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->useLogName('user')
+            ->logOnly(['type', 'name', 'email'])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
     }
 }

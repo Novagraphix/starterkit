@@ -58,15 +58,13 @@ class UserEdit extends Component
                 'email' => $this->email,
             ]);
 
-            if (!$this->user->isMasterAdmin()) {
-                $tmp = explode(',', $this->roles);
-                $roles = Role::whereIn('name', $tmp)->get();
-                $this->user->syncRoles($roles ?? []);
+            $tmp = explode(',', $this->roles);
+            $roles = Role::whereIn('name', $tmp)->get();
+            $this->user->syncRoles($roles ?? []);
 
-                $tmp = explode(',', $this->permissions);
-                $permissions = Permission::whereIn('name', $tmp)->get();
-                $this->user->syncPermissions($permissions ?? []);
-            }
+            $tmp = explode(',', $this->permissions);
+            $permissions = Permission::whereIn('name', $tmp)->get();
+            $this->user->syncPermissions($permissions ?? []);
         } catch (Exception $e) {
             DB::rollBack();
             // dump($e);

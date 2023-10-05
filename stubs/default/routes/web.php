@@ -16,6 +16,8 @@ use App\Http\Controllers\Auth\LogoutController;
 
 Route::redirect('home', '/')->name('home');
 
+Route::impersonate();
+
 Route::middleware('auth')->group(function () {
     /* Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)
         ->middleware('signed')

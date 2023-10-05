@@ -74,7 +74,7 @@ class StarterkitPreset extends Preset
 
         static::updateFile(base_path('app/Http/Kernel.php'), function ($file) {
             if (strpos($file, 'redirect-to-dashboard')) return $file;
-            return str_replace("'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,", "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,\n\t\t'redirect-to-dashboard' => \App\Http\Middleware\RedirectToDashboard::class,", $file);
+            return str_replace("'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,", "'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,\n\t\t'redirect-to-dashboard' => \App\Http\Middleware\RedirectToDashboard::class,\n\t\t'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,\n\t\t'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,\n\t\t'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,", $file);
         });
 
         // This is needed until page named routes are available in Folio

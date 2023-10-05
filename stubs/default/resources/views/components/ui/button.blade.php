@@ -6,6 +6,7 @@
     'href' => '/',
     'icon' => '',
     'submit' => false,
+    'params' => null,
 ])
 
 @php
@@ -44,6 +45,10 @@
         case 'a':
             $link = $href ?? '';
             $tagAttr = 'a  href="' . $link . '"';
+            $tagClose = 'a';
+            break;
+        case 'route':
+            $tagAttr = 'a  href="' . route($href, $params) . '"';
             $tagClose = 'a';
             break;
         default:

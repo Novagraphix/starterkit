@@ -1,3 +1,11 @@
+<?php
+
+use function Laravel\Folio\{middleware};
+
+middleware(['role:Administrator']);
+
+?>
+
 <x-layouts.app>
     <x-slot name="header">
         {{ __('Rolle erstellen') }}

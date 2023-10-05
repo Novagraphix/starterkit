@@ -1,10 +1,12 @@
 <?php
 
-use function Laravel\Folio\name;
+use function Laravel\Folio\{name, middleware};
 use Spatie\Permission\Models\Role;
 use function Livewire\Volt\{state, on};
 
 name('role.index');
+
+middleware(['role:Administrator']);
 
 state(['roles' => fn() => Role::all()]);
 

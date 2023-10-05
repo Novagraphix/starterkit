@@ -1,10 +1,12 @@
 <?php
 
-use function Laravel\Folio\name;
+use function Laravel\Folio\{name, middleware};
 use App\Domains\Auth\Models\User;
 use function Livewire\Volt\{state, on};
 
 name('user.index');
+
+middleware(['role:Administrator']);
 
 state(['users' => fn() => User::all()]);
 
@@ -120,6 +122,16 @@ $showConfirmation = function ($method, $id) {
                                                  tag="a"
                                                  href="/user/edit/{{ $user->id }}"
                                                  icon="fas-edit" />
+
+                                    @canBeImpersonated($user)
+                                    <x-ui.button type="warning"
+                                                 title="{{ __('Impersonate') }}"
+                                                 size="xs"
+                                                 tag="route"
+                                                 href="impersonate"
+                                                 :params="$user"
+                                                 icon="fas-user-secret" />
+                                    @endCanBeImpersonated
 
                                     <x-ui.button wire:click.live="showConfirmation('delete-user', {{ $user->id }})"
                                                  size="xs"

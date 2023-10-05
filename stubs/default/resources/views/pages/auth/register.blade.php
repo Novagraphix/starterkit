@@ -1,14 +1,16 @@
 <?php
 
+use App\Domains\Auth\Models\Role;
 use App\Domains\Auth\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Registered;
 
+use Illuminate\Auth\Events\Registered;
 use function Laravel\Folio\{middleware};
 use function Livewire\Volt\{state, rules};
 
-middleware(['guest']);
+middleware(['guest']); //change to role:Administrator after registering first admin
+
 state(['name' => '', 'email' => '', 'password' => '', 'passwordConfirmation' => '']);
 rules(['name' => 'required', 'email' => 'required|email|unique:users', 'password' => 'required|min:8|same:passwordConfirmation']);
 
@@ -20,6 +22,9 @@ $register = function () {
         'name' => $this->name,
         'password' => Hash::make($this->password),
     ]);
+
+    $role = Role::findOrCreate('Administrator');
+    $user->assignRole('Administrator');
 
     // need to wait for folio paged based routes to add the following event 👇
     // https://github.com/laravel/folio/pull/54

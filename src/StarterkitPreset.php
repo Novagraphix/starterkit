@@ -12,9 +12,9 @@ class StarterkitPreset extends Preset
     const NPM_PACKAGES_TO_ADD = [
         '@tailwindcss/forms' => '^0.5.6',
         '@tailwindcss/typography' => '^0.5.10',
-        'alpinejs' => '^3.13.0',
+        'alpinejs' => '^3.13.1',
         'autoprefixer' => '^10.4.16',
-        "postcss" => "^8.4.30",
+        "postcss" => "^8.4.31",
         "sass" =>  "^1.68.0",
         "tailwindcss" =>  "^3.3.3",
         "@yaireo/tagify" => "^4.17.9",

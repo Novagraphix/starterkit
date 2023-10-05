@@ -9,6 +9,10 @@ npm install
 npm run dev
 ```
 
+## IMPORTANT
+
+Change `middleware(['guest']);` to `middleware(['role:Administrator']);` in `resources/views/pages/auth/register.blade.php` after first user is registered.
+
 ## TO DOC
 
 - Helpers

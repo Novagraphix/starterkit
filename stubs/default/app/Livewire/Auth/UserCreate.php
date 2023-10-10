@@ -16,20 +16,20 @@ class UserCreate extends Component
     public $name;
     public $email;
     public $roles;
-    public $permissions;
     public $password;
 
     public $all_roles;
-    public $all_permissions;
+    public $grouped_permissions;
     public $model;
     public $user;
+    public $permission = [];
 
     protected $rules = [
         'type' => 'required',
         'name' => 'required|min:6',
         'email' => 'required|email',
         'roles' => '',
-        'permissions' => '',
+        'permission' => '',
     ];
 
     public function mount()
@@ -37,8 +37,13 @@ class UserCreate extends Component
         $this->type = 'user';
         $this->model = User::class;
 
+        $collection = Permission::whereRaw('LENGTH(name) - LENGTH(REPLACE(name, ".", "")) >= 3')->get();
+        $this->grouped_permissions = $collection->groupBy(function ($item) {
+            $parts = explode('.', $item);
+            return $parts[2] ?? null;
+        });
+
         $this->all_roles = Role::pluck('name')->toArray();
-        $this->all_permissions = Permission::pluck('name')->toArray();
     }
 
     public function submit()
@@ -60,9 +65,7 @@ class UserCreate extends Component
                 $roles = Role::whereIn('name', $tmp)->get();
                 $this->user->syncRoles($roles ?? []);
 
-                $tmp = explode(',', $this->permissions);
-                $permissions = Permission::whereIn('name', $tmp)->get();
-                $this->user->syncPermissions($permissions ?? []);
+                $this->user->syncPermissions(formWriteablePermissions($this->permission) ?? []);
             }
         } catch (Exception $e) {
             DB::rollBack();
@@ -84,15 +87,6 @@ class UserCreate extends Component
             return;
         }
         $this->roles = collect(json_decode($tags))->pluck('value')->implode(',');
-    }
-
-    public function changePermissions(string $tags): void
-    {
-        if (empty($tags)) {
-            $this->permissions = '';
-            return;
-        }
-        $this->permissions = collect(json_decode($tags))->pluck('value')->implode(',');
     }
 
     public function render()

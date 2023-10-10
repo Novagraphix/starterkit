@@ -65,12 +65,7 @@
         </div>
 
         <div>
-            <x-form.label value="Berechtigungen" />
-            <x-form.tags class="bg-grey-lighter"
-                         name="permissions"
-                         :all="$all_permissions"
-                         callback="changePermissions"
-                         class="block w-full mt-1" />
+            <x-ui.permission-table :data="$grouped_permissions" />
         </div>
 
         <div class="flex items-center gap-2">

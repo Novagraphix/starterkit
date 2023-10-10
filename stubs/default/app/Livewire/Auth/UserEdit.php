@@ -15,19 +15,19 @@ class UserEdit extends Component
     public $name;
     public $email;
     public $roles;
-    public $permissions;
 
     public $all_roles;
-    public $all_permissions;
+    public $grouped_permissions;
     public $model;
     public $user;
+    public $permission = [];
 
     protected $rules = [
         'type' => 'required',
         'name' => 'required|min:6',
         'email' => 'required|email',
         'roles' => '',
-        'permissions' => '',
+        'permission' => '',
     ];
 
     public function mount(User $user)
@@ -39,10 +39,16 @@ class UserEdit extends Component
         $this->model = User::class;
 
         $this->all_roles = Role::pluck('name')->toArray();
-        $this->all_permissions = Permission::pluck('name')->toArray();
+
+        $collection = Permission::whereRaw('LENGTH(name) - LENGTH(REPLACE(name, ".", "")) >= 3')->get();
+        $this->grouped_permissions = $collection->groupBy(function ($item) {
+            $parts = explode('.', $item);
+            return $parts[2] ?? null;
+        });
+
+        $this->permission = formReadablePermissions($user);
 
         $this->roles = $user->roles()->pluck('name')->implode(',');
-        $this->permissions = $user->permissions()->pluck('name')->implode(',');
     }
 
     public function submit()
@@ -62,9 +68,7 @@ class UserEdit extends Component
             $roles = Role::whereIn('name', $tmp)->get();
             $this->user->syncRoles($roles ?? []);
 
-            $tmp = explode(',', $this->permissions);
-            $permissions = Permission::whereIn('name', $tmp)->get();
-            $this->user->syncPermissions($permissions ?? []);
+            $this->user->syncPermissions(formWriteablePermissions($this->permission) ?? []);
         } catch (Exception $e) {
             DB::rollBack();
             // dump($e);
@@ -85,15 +89,6 @@ class UserEdit extends Component
             return;
         }
         $this->roles = collect(json_decode($tags))->pluck('value')->implode(',');
-    }
-
-    public function changePermissions(string $tags): void
-    {
-        if (empty($tags)) {
-            $this->permissions = '';
-            return;
-        }
-        $this->permissions = collect(json_decode($tags))->pluck('value')->implode(',');
     }
 
     public function render()

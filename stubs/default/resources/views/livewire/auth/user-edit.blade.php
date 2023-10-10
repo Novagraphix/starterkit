@@ -54,13 +54,7 @@
         </div>
 
         <div>
-            <x-form.label value="Berechtigungen" />
-            <x-form.tags class="bg-grey-lighter"
-                         name="permissions"
-                         :all="$all_permissions"
-                         :value="$permissions"
-                         callback="changePermissions"
-                         class="block w-full mt-1" />
+            <x-ui.permission-table :data="$grouped_permissions" />
         </div>
 
         <div class="flex items-center gap-2">
@@ -72,8 +66,8 @@
                          tag="a"
                          href="/user" />
         </div>
-
     </form>
+
     @push('after-styles')
         <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
         <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>

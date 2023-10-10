@@ -78,7 +78,7 @@ $showConfirmation = function ($method, $id) {
                         <tr
                             class="text-[0.65em] even:bg-gray-100 hover:bg-amber-50 dark:text-gray-100 dark:even:bg-gray-800 lg:text-xs 2xl:text-sm">
                             <td
-                                class="block px-2 font-bold before:mr-1 before:font-bold before:content-['Typ'] lg:table-cell lg:p-2 lg:before:content-none">
+                                class="block px-2 align-top font-bold before:mr-1 before:font-bold before:content-['Typ'] lg:table-cell lg:p-2 lg:before:content-none">
                                 @if ($user->isAdmin())
                                     @lang('Administrator')
                                 @elseif ($user->isUser())
@@ -90,13 +90,13 @@ $showConfirmation = function ($method, $id) {
                                 @endif
                             </td>
                             <td
-                                class="block px-2 before:mr-1 before:font-bold before:content-['Name'] lg:table-cell lg:p-2 lg:before:content-none">
+                                class="block px-2 align-top before:mr-1 before:font-bold before:content-['Name'] lg:table-cell lg:p-2 lg:before:content-none">
                                 <a href="/users/{{ $user->id }}">{{ $user->name }}</a>
                             </td>
-                            <td class="px-6 py-3 text-left">
+                            <td class="px-6 py-3 text-left align-top">
                                 {{ $user->email }}
                             </td>
-                            <td class="px-6 py-3 text-left">
+                            <td class="px-6 py-3 text-left align-top">
                                 @if (count($user->roles) > 0)
                                     @foreach ($user->roles as $role)
                                         <strong>{{ $role->name }}</strong>
@@ -114,7 +114,7 @@ $showConfirmation = function ($method, $id) {
                                     Keine
                                 @endif
                             </td>
-                            <td class="block px-2 lg:table-cell">
+                            <td class="block px-2 py-3 align-top lg:table-cell">
                                 <div
                                      class="flex flex-col items-end justify-end text-xs text-gray-700 dark:text-gray-300 dark:hover:text-secondary-400 xl:flex-row xl:items-center xl:gap-2">
                                     <x-ui.button title="{{ __('edit') }}"
